@@ -1,210 +1,1379 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | lai.codes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .gradient-text { background: linear-gradient(90deg, #3b82f6, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lai — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8e8f0;
+    --muted: #5a5a72;
+    --accent: #7b6cff;
+    --accent2: #ff6c8a;
+    --accent3: #6cffd4;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+  }
+  .cursor-dot {
+    width: 8px; height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s ease;
+  }
+  body:has(a:hover) .cursor-ring,
+  body:has(button:hover) .cursor-ring { transform: translate(-50%, -50%) scale(2); opacity: 0.5; }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.032;
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,15,0.7);
+  }
+  .nav-logo {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+  }
+  .nav-badge:hover { background: var(--accent); color: #fff; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(123,108,255,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(108,255,212,0.06) 0%, transparent 70%);
+  }
+  .hero-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 48%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+  }
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-title {
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    max-width: 14ch;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.35s forwards;
+  }
+  .hero-title em {
+    font-style: normal;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+    color: transparent;
+  }
+  .hero-sub {
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+    max-width: 38ch;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+  .hero-ctas {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s forwards;
+  }
+  .btn-primary {
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: #9585ff; transform: translateY(-2px); }
+  .btn-ghost {
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: transparent;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-ghost:hover { border-color: var(--text); color: var(--text); }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem; right: 3rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+  .hero-scroll::before {
+    content: '';
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollLine 2s 1.5s infinite;
+  }
+  .hero-stats {
+    position: absolute;
+    right: 3rem; top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    opacity: 0;
+    animation: fadeIn 1s 0.8s forwards;
+  }
+  .stat { text-align: right; }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text);
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  /* SECTIONS */
+  section { padding: 8rem 3rem; position: relative; }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+  .about-text p {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+  .about-text p strong { color: var(--text); font-weight: 400; }
+  .about-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .about-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .about-card:hover { border-color: rgba(123,108,255,0.3); transform: translateY(-4px); }
+  .about-card:hover::before { opacity: 0.05; }
+  .about-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .about-card-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .about-card-text { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); line-height: 1.6; }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    position: relative;
+  }
+  .project-card:hover { transform: translateY(-8px); border-color: rgba(123,108,255,0.25); box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
+  .project-thumb {
+    height: 180px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .project-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, var(--surface));
+  }
+  .project-thumb-glow {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+  }
+  .project-body { padding: 1.5rem; }
+  .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .project-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .project-desc { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); line-height: 1.7; }
+  .project-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .project-stat { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); }
+  .project-arrow { color: var(--accent); font-size: 1rem; transition: transform 0.2s; }
+  .project-card:hover .project-arrow { transform: translate(4px, -4px); }
+
+  /* SKILLS */
+  .skills-section { background: var(--surface); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 4rem;
+  }
+  .skill-group {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    background: var(--bg);
+    transition: all 0.3s;
+  }
+  .skill-group:hover { border-color: rgba(123,108,255,0.3); }
+  .skill-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.3rem 0.7rem;
+    background: rgba(123,108,255,0.08);
+    border: 1px solid rgba(123,108,255,0.15);
+    color: var(--text);
+    border-radius: 0.2rem;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover { background: rgba(123,108,255,0.18); border-color: var(--accent); }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 0;
+    margin: 4rem 0;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .marquee-item::after { content: '◆'; color: var(--accent); font-size: 0.4rem; }
+
+  /* CV SECTION */
+  .cv-section {
+    background: linear-gradient(135deg, rgba(123,108,255,0.05) 0%, transparent 60%);
+    border-top: 1px solid var(--border);
+  }
+  .cv-variants {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin-top: 3rem;
+  }
+  .cv-variant-btn {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    border-radius: 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+  .cv-variant-btn .cv-icon { font-size: 1.3rem; display: block; margin-bottom: 0.6rem; }
+  .cv-variant-btn:hover { border-color: var(--accent); color: var(--text); background: rgba(123,108,255,0.08); }
+  .cv-variant-btn.active { border-color: var(--accent); color: var(--text); background: rgba(123,108,255,0.12); }
+
+  /* CV MODAL */
+  .cv-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .cv-modal-overlay.open { opacity: 1; pointer-events: all; }
+  .cv-modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    width: 90vw;
+    max-width: 720px;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+  }
+  .cv-modal-overlay.open .cv-modal { transform: translateY(0); }
+  .cv-modal-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cv-modal-title { font-size: 1rem; font-weight: 700; }
+  .cv-modal-close {
+    background: none; border: none; color: var(--muted); font-size: 1.5rem;
+    cursor: pointer; transition: color 0.2s; padding: 0.25rem;
+  }
+  .cv-modal-close:hover { color: var(--text); }
+  .cv-preview {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    background: #fff;
+    color: #111;
+    font-family: 'Georgia', serif;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+  .cv-preview h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  .cv-preview h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: #666; margin-bottom: 1.2rem; font-family: monospace; font-weight: 400; }
+  .cv-preview h3 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #ddd; padding-bottom: 0.3rem; margin: 1.2rem 0 0.7rem; font-family: monospace; }
+  .cv-preview p { margin-bottom: 0.5rem; }
+  .cv-preview .cv-contact { font-family: monospace; font-size: 0.72rem; color: #444; margin-bottom: 1rem; }
+  .cv-export-bar {
+    padding: 1.25rem 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .export-btn {
+    padding: 0.6rem 1.1rem;
+    border-radius: 0.3rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+  }
+  .export-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .export-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .export-btn.primary:hover { background: #9585ff; }
+  .export-btn.copied { background: var(--accent3); border-color: var(--accent3); color: #000; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .form-input, .form-textarea {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.3rem;
+    padding: 0.85rem 1rem;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    transition: border-color 0.2s;
+    outline: none;
+    resize: none;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-textarea { min-height: 120px; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    transition: color 0.2s;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+    background: var(--surface);
+  }
+  .contact-link:hover { color: var(--text); border-color: rgba(123,108,255,0.3); }
+  .contact-link-icon { font-size: 1.2rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes scrollLine { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  /* MODE SELECTOR */
+  .mode-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .mode-overlay.hidden { opacity: 0; transform: scale(1.05); pointer-events: none; }
+  .mode-title { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; text-align: center; }
+  .mode-title span { color: var(--muted); }
+  .mode-cards { display: flex; gap: 1.5rem; }
+  .mode-card {
+    width: 220px;
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--surface);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+  }
+  .mode-card:hover { border-color: var(--accent); transform: translateY(-6px); }
+  .mode-card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .mode-card-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .mode-card-desc { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); line-height: 1.6; }
+  .mode-card.recommended { border-color: rgba(123,108,255,0.4); }
+  .mode-card.recommended .mode-card-name::after {
+    content: ' ✦';
+    color: var(--accent);
+    font-size: 0.7rem;
+  }
+
+  /* LIVE DOT */
+  .live-dot {
+    width: 6px; height: 6px;
+    background: var(--accent3);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+    margin-right: 0.4rem;
+  }
+</style>
 </head>
-<body class="bg-slate-50 text-slate-900 selection:bg-blue-100">
+<body>
 
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <span class="text-xl font-bold gradient-text">lai.codes</span>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
-                <a href="#projects" class="hover:text-blue-600">Projects</a>
-                <a href="#certs" class="hover:text-blue-600">Certifications</a>
-                <a href="#skills" class="hover:text-blue-600">Skills</a>
-                <a href="mailto:tototofu0601@gmail.com" class="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Contact</a>
-            </div>
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MODE SELECTOR -->
+<div class="mode-overlay" id="modeOverlay">
+  <div>
+    <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--accent3);letter-spacing:0.15em;text-transform:uppercase;text-align:center;margin-bottom:1rem;"><span class="live-dot"></span>lai.codes</p>
+    <div class="mode-title">Choose your<br/><span>experience</span></div>
+  </div>
+  <div class="mode-cards">
+    <div class="mode-card recommended" onclick="selectMode('ultimate')">
+      <div class="mode-card-icon">🚀</div>
+      <div class="mode-card-name">Ultimate</div>
+      <div class="mode-card-desc">Full 3D immersive experience. Best on desktop with good connection.</div>
+    </div>
+    <div class="mode-card" onclick="selectMode('light')">
+      <div class="mode-card-icon">⚡</div>
+      <div class="mode-card-name">Light</div>
+      <div class="mode-card-desc">Fast & fluid. Same content, optimized for any device or connection.</div>
+    </div>
+  </div>
+  <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);">Both versions look great — your call.</p>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">L<span>.</span>ai</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-badge" onclick="openCV()">↓ Get CV</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-tag"><span class="live-dot"></span>BEng Computer Engineering & AI · HKUST · 2027</div>
+  <h1 class="hero-title">Building<br/><em>things</em><br/>that matter.</h1>
+  <p class="hero-sub">AI engineer, robotics builder, climber.<br/>I make products that sit at the edge of<br/>hardware, software, and intelligence.</p>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn-primary">View Work →</a>
+    <a href="#contact" class="btn-ghost">Get in touch</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">1<span>st</span></div>
+      <div class="stat-label">Combat Bot</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">94<span>%</span></div>
+      <div class="stat-label">CNN Accuracy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">200<span>+</span></div>
+      <div class="stat-label">Members Led</div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Python</span>
+    <span class="marquee-item">React Three Fiber</span>
+    <span class="marquee-item">TensorFlow</span>
+    <span class="marquee-item">Arduino</span>
+    <span class="marquee-item">RAG · Dify</span>
+    <span class="marquee-item">n8n Automation</span>
+    <span class="marquee-item">C++</span>
+    <span class="marquee-item">PostgreSQL</span>
+    <span class="marquee-item">Docker</span>
+    <span class="marquee-item">National Climber 🧗</span>
+    <span class="marquee-item">Python</span>
+    <span class="marquee-item">React Three Fiber</span>
+    <span class="marquee-item">TensorFlow</span>
+    <span class="marquee-item">Arduino</span>
+    <span class="marquee-item">RAG · Dify</span>
+    <span class="marquee-item">n8n Automation</span>
+    <span class="marquee-item">C++</span>
+    <span class="marquee-item">PostgreSQL</span>
+    <span class="marquee-item">Docker</span>
+    <span class="marquee-item">National Climber 🧗</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label reveal">About</div>
+  <h2 class="section-title reveal reveal-delay-1">Not just a<br/>developer.</h2>
+  <div class="about-grid">
+    <div class="about-text reveal reveal-delay-2">
+      <p>I'm <strong>Lai</strong>, a Computer Engineering & AI student at HKUST building at the intersection of <strong>hardware, intelligence, and product design</strong>.</p>
+      <p>My work spans from training CNNs on 5,000-sample datasets to leading 4-man robotics teams to first place. I care about the whole stack — from circuit soldering to system architecture to the slide deck that sells it.</p>
+      <p>Outside the lab, I'm a <strong>Hong Kong National Climbing Team</strong> member and VP of HKUST's Sport Climbing Society, managing 200+ members and securing corporate sponsorships.</p>
+      <p>I build things that work, present clearly, and scale.</p>
+    </div>
+    <div class="about-cards reveal reveal-delay-3">
+      <div class="about-card">
+        <div class="about-card-icon">🤖</div>
+        <div class="about-card-title">AI & Agents</div>
+        <div class="about-card-text">CNNs, RAG pipelines, agentic workflows with Dify and n8n</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚙️</div>
+        <div class="about-card-title">Robotics</div>
+        <div class="about-card-text">Arduino, BLE, embedded C++, PID control, 1st place combat bot</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🎨</div>
+        <div class="about-card-title">Product & Design</div>
+        <div class="about-card-text">Figma UI/UX, React frontends, Framer Motion, full-stack prototyping</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🧗</div>
+        <div class="about-card-title">Leadership</div>
+        <div class="about-card-text">VP of 200+ society, national athlete, sponsor negotiator</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--surface);">
+  <div class="section-label reveal">Work</div>
+  <h2 class="section-title reveal reveal-delay-1">Selected<br/>projects.</h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);">
+        <div class="project-thumb-glow" style="background:var(--accent);"></div>
+        🧠
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">TensorFlow</span>
+          <span class="project-tag">CNN</span>
+          <span class="project-tag">Python</span>
         </div>
-    </nav>
+        <div class="project-name">AI Image Detector</div>
+        <div class="project-desc">Deep CNN that classifies real vs AI-generated imagery. 94% validation accuracy on 5,000+ sample dataset with dropout regularization.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-stat">94% accuracy · 5K+ samples</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
 
-    <!-- Hero Section -->
-    <header class="max-w-5xl mx-auto px-6 pt-24 pb-16 text-center">
-        <div class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold text-blue-700 bg-blue-50 rounded-full border border-blue-100">
-            HKUST CompEng & AI '27
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0d1117,#1a1a2e);">
+        <div class="project-thumb-glow" style="background:#ff6c8a;"></div>
+        🤖
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Arduino</span>
+          <span class="project-tag">BLE</span>
+          <span class="project-tag">C++</span>
         </div>
-        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">Building the future with <span class="gradient-text">Agentic AI</span></h1>
-        <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-            National Climbing Team athlete turned Engineer. Exploring the intersection of Robotics, Generative AI, and human performance.
-        </p>
-        <div class="flex justify-center space-x-4">
-            <a href="https://github.com/tototofu123" class="p-3 bg-white border border-slate-200 rounded-xl hover:shadow-lg transition">
-                <i class="fab fa-github text-2xl"></i>
-            </a>
-            <a href="#" class="p-3 bg-white border border-slate-200 rounded-xl hover:shadow-lg transition">
-                <i class="fab fa-linkedin text-2xl"></i>
-            </a>
-            <a href="mailto:tototofu0601@gmail.com" class="p-3 bg-white border border-slate-200 rounded-xl hover:shadow-lg transition">
-                <i class="fas fa-envelope text-2xl"></i>
-            </a>
+        <div class="project-name">Combat Bot — 1st Place</div>
+        <div class="project-desc">Led 4-man team to design, build, and win. Custom mobile BLE controller, optimized mechanical design, fastest course time across 20+ teams.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-stat">🏆 1st / 20+ teams</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0a2342,#0d4f6e);">
+        <div class="project-thumb-glow" style="background:var(--accent3);"></div>
+        🤖
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Dify</span>
+          <span class="project-tag">RAG</span>
+          <span class="project-tag">Prompt Eng.</span>
         </div>
-    </header>
+        <div class="project-name">Student Support AI Agent</div>
+        <div class="project-desc">RAG-powered agent with 50+ vectorized document pages. Empathetic tone via system prompt engineering, privacy guards built in.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-stat">50+ docs vectorized</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
 
-    <!-- Project Gallery -->
-    <section id="projects" class="max-w-5xl mx-auto px-6 py-16">
-        <div class="flex items-center justify-between mb-12">
-            <h2 class="text-3xl font-bold">Technical Projects</h2>
-            <div class="h-px bg-slate-200 flex-grow ml-8 hidden md:block"></div>
+    <div class="project-card reveal">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1a0533,#2d1b69);">
+        <div class="project-thumb-glow" style="background:#a855f7;"></div>
+        ♟️
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Minimax</span>
+          <span class="project-tag">Alpha-Beta</span>
+          <span class="project-tag">Python</span>
         </div>
-        
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Project 1 -->
-            <div class="bg-white p-8 rounded-3xl border border-slate-200 card-hover shadow-sm">
-                <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6 text-xl">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">All-in-One Combat Bot</h3>
-                <p class="text-slate-600 mb-4 text-sm leading-relaxed">
-                    Lead engineer for a 4-man team. Developed a high-performance combat robot with BLE mobile control via Arduino. 
-                    <strong>Secured 1st Place overall</strong> among 20+ teams.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">Arduino IDE</span>
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">C++</span>
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">Robotics</span>
-                </div>
-            </div>
+        <div class="project-name">Game AI — Minimax Agent</div>
+        <div class="project-desc">Connect4 and card game AI with alpha-beta pruning. Evaluates 10,000+ board states/sec with custom heuristics for center control and defense.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-stat">10K+ states/sec</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
 
-            <!-- Project 2 -->
-            <div class="bg-white p-8 rounded-3xl border border-slate-200 card-hover shadow-sm">
-                <div class="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 mb-6 text-xl">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Agentic Hot-Topic Automation</h3>
-                <p class="text-slate-600 mb-4 text-sm leading-relaxed">
-                    Multi-stage autonomous agent deployed via Docker. Integrated Ollama for local LLM processing and PostgreSQL for trend storage. Reduced manual research time by 90%.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">n8n</span>
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">Ollama</span>
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">PostgreSQL</span>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="bg-white p-8 rounded-3xl border border-slate-200 card-hover shadow-sm">
-                <div class="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 mb-6 text-xl">
-                    <i class="fas fa-terminal"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">C++ PvE Combat Engine</h3>
-                <p class="text-slate-600 mb-4 text-sm leading-relaxed">
-                    Hand-coded terminal-based RPG using OOP principles. Features modular inventory, dynamic enemy scaling, and state-machine logic for turn-based combat.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">C++</span>
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">OOP</span>
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">Gamedev</span>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="bg-white p-8 rounded-3xl border border-slate-200 card-hover shadow-sm">
-                <div class="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-6 text-xl">
-                    <i class="fas fa-draw-polygon"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Python Turtle Vector Renderer</h3>
-                <p class="text-slate-600 mb-4 text-sm leading-relaxed">
-                    Custom interpreter for Python Turtle. Maps 500+ path nodes to render complex geometric shapes and characters with computational geometry optimizations.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">Python</span>
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">Geometry</span>
-                </div>
-            </div>
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#001a00,#003300);">
+        <div class="project-thumb-glow" style="background:var(--accent3);"></div>
+        ⚡
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">n8n</span>
+          <span class="project-tag">Ollama</span>
+          <span class="project-tag">Docker</span>
         </div>
-    </section>
+        <div class="project-name">Hot-Topic Automation</div>
+        <div class="project-desc">Self-hosted multi-stage agent. Local LLM via Ollama, PostgreSQL trend storage, sentiment analysis, webhook reports. 90% reduction in manual research.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-stat">90% time saved · self-hosted</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
 
-    <!-- Certifications Section -->
-    <section id="certs" class="bg-white py-16">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12">Certifications</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="p-5 border border-slate-100 rounded-2xl hover:border-blue-200 transition">
-                    <p class="text-xs font-bold text-blue-600 uppercase mb-2">Vanderbilt</p>
-                    <p class="font-semibold text-slate-800">Agentic AI with Python</p>
-                </div>
-                <div class="p-5 border border-slate-100 rounded-2xl hover:border-blue-200 transition">
-                    <p class="text-xs font-bold text-blue-600 uppercase mb-2">AWS</p>
-                    <p class="font-semibold text-slate-800">Machine Learning Foundations</p>
-                </div>
-                <div class="p-5 border border-slate-100 rounded-2xl hover:border-blue-200 transition">
-                    <p class="text-xs font-bold text-blue-600 uppercase mb-2">U. Michigan</p>
-                    <p class="font-semibold text-slate-800">Interactivity with JavaScript</p>
-                </div>
-                <div class="p-5 border border-slate-100 rounded-2xl hover:border-blue-200 transition">
-                    <p class="text-xs font-bold text-blue-600 uppercase mb-2">Imperial College</p>
-                    <p class="font-semibold text-slate-800">Creative Thinking & AI</p>
-                </div>
-                <div class="p-5 border border-slate-100 rounded-2xl hover:border-blue-200 transition">
-                    <p class="text-xs font-bold text-blue-600 uppercase mb-2">Copenhagen BS</p>
-                    <p class="font-semibold text-slate-800">Illusion of Intelligence</p>
-                </div>
-                <div class="p-5 border border-slate-100 rounded-2xl hover:border-blue-200 transition">
-                    <p class="text-xs font-bold text-blue-600 uppercase mb-2">DEC x HKUST</p>
-                    <p class="font-semibold text-slate-800">AI Literacy for All</p>
-                </div>
-            </div>
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1a0a00,#3d1f00);">
+        <div class="project-thumb-glow" style="background:#f97316;"></div>
+        🎮
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">C++</span>
+          <span class="project-tag">OOP</span>
+          <span class="project-tag">Systems</span>
         </div>
-    </section>
+        <div class="project-name">C++ PvE Combat Engine</div>
+        <div class="project-desc">Terminal RPG built from scratch. Modular inventory, dynamic enemy scaling across 10+ levels, state-machine combat, no external libraries.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-stat">10+ difficulty levels</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="max-w-5xl mx-auto px-6 py-20">
-        <div class="bg-slate-900 rounded-[3rem] p-12 text-white">
-            <h2 class="text-3xl font-bold mb-10 text-center">Technical Stack</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
-                <div>
-                    <h4 class="text-blue-400 font-bold mb-4">Core</h4>
-                    <ul class="space-y-2 text-slate-400 text-sm">
-                        <li>Python</li>
-                        <li>C++</li>
-                        <li>JavaScript</li>
-                        <li>PostgreSQL</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-blue-400 font-bold mb-4">AI / Agents</h4>
-                    <ul class="space-y-2 text-slate-400 text-sm">
-                        <li>RAG & MCP</li>
-                        <li>Dify & n8n</li>
-                        <li>TensorFlow</li>
-                        <li>Ollama</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-blue-400 font-bold mb-4">Workflows</h4>
-                    <ul class="space-y-2 text-slate-400 text-sm">
-                        <li>Docker</li>
-                        <li>GitHub CI/CD</li>
-                        <li>Figma/Framer</li>
-                        <li>Arduino IDE</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-blue-400 font-bold mb-4">Athletics</h4>
-                    <ul class="space-y-2 text-slate-400 text-sm">
-                        <li>National Climbing Team</li>
-                        <li>Technical Coaching</li>
-                        <li>Event Strategy</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="text-center py-12 text-slate-400 text-sm">
-        <p>&copy; 2026 lai.codes. Coded by hand with AI-augmented workflows.</p>
-    </footer>
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <div class="section-label reveal">Capabilities</div>
+  <h2 class="section-title reveal reveal-delay-1">What I<br/>work with.</h2>
+  <div class="skills-grid reveal reveal-delay-2">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">HTML5/CSS3</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI & Agents</div>
+      <div class="skill-tags">
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">RAG</span>
+        <span class="skill-tag">Dify</span>
+        <span class="skill-tag">Ollama</span>
+        <span class="skill-tag">Prompt Eng.</span>
+        <span class="skill-tag">MCP</span>
+        <span class="skill-tag">AWS ML</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Automation</div>
+      <div class="skill-tags">
+        <span class="skill-tag">n8n</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">Webhooks</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Frontend</div>
+      <div class="skill-tags">
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Framer Motion</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Tailwind</span>
+        <span class="skill-tag">GitHub Pages</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Hardware</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Arduino</span>
+        <span class="skill-tag">BLE</span>
+        <span class="skill-tag">PID Control</span>
+        <span class="skill-tag">Shapr3D</span>
+        <span class="skill-tag">Soldering</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Soft Skills</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Public Speaking</span>
+        <span class="skill-tag">Sponsorship</span>
+        <span class="skill-tag">Team Leadership</span>
+        <span class="skill-tag">Technical Presentation</span>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- CV SECTION -->
+<section class="cv-section" id="cv">
+  <div class="section-label reveal">CV Generator</div>
+  <h2 class="section-title reveal reveal-delay-1">Get a tailored<br/>CV for your role.</h2>
+  <p class="reveal reveal-delay-2" style="font-family:var(--font-mono);font-size:0.82rem;color:var(--muted);margin-top:1rem;max-width:42ch;line-height:1.8;">Pick what fits you — I'll generate a version of my CV with the most relevant projects, skills, and framing for your context.</p>
+  <div class="cv-variants reveal reveal-delay-2">
+    <button class="cv-variant-btn" onclick="selectVariant('aiml', this)">
+      <span class="cv-icon">🧠</span>AI / ML Engineer
+    </button>
+    <button class="cv-variant-btn" onclick="selectVariant('swe', this)">
+      <span class="cv-icon">💻</span>Software Engineer
+    </button>
+    <button class="cv-variant-btn" onclick="selectVariant('pm', this)">
+      <span class="cv-icon">🎯</span>Product Manager
+    </button>
+    <button class="cv-variant-btn" onclick="selectVariant('robotics', this)">
+      <span class="cv-icon">🤖</span>Robotics / Embedded
+    </button>
+    <button class="cv-variant-btn" onclick="selectVariant('bd', this)">
+      <span class="cv-icon">🤝</span>Business Dev
+    </button>
+    <button class="cv-variant-btn" onclick="selectVariant('climbing', this)">
+      <span class="cv-icon">🧗</span>Climbing Coach
+    </button>
+    <button class="cv-variant-btn" onclick="selectVariant('frontend', this)">
+      <span class="cv-icon">🎨</span>Frontend Designer
+    </button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label reveal">Contact</div>
+  <h2 class="section-title reveal reveal-delay-1">Let's build<br/>something.</h2>
+  <div class="contact-grid">
+    <div class="contact-form reveal reveal-delay-2">
+      <div class="form-field">
+        <label class="form-label">Your name</label>
+        <input type="text" class="form-input" placeholder="Jane Smith" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Tell me about the opportunity..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:fit-content;">Send Message →</button>
+    </div>
+    <div class="contact-info reveal reveal-delay-3">
+      <a href="mailto:tototofu0601@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉️</span>
+        tototofu0601@gmail.com
+      </a>
+      <a href="https://github.com/tototofu123" class="contact-link" target="_blank">
+        <span class="contact-link-icon">⌥</span>
+        github.com/tototofu123
+      </a>
+      <a href="https://lai.codes" class="contact-link" target="_blank">
+        <span class="contact-link-icon">🌐</span>
+        lai.codes
+      </a>
+      <a href="#" class="contact-link">
+        <span class="contact-link-icon">📍</span>
+        Hong Kong SAR
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Lai — Built with React, Framer Motion, R3F</p>
+  <p>lai.codes · Hong Kong</p>
+</footer>
+
+<!-- CV MODAL -->
+<div class="cv-modal-overlay" id="cvModal">
+  <div class="cv-modal">
+    <div class="cv-modal-header">
+      <div class="cv-modal-title" id="cvModalTitle">CV Preview</div>
+      <button class="cv-modal-close" onclick="closeCV()">✕</button>
+    </div>
+    <div class="cv-preview" id="cvPreview"></div>
+    <div class="cv-export-bar">
+      <button class="export-btn primary" onclick="downloadPDF()">⬇ PDF</button>
+      <button class="export-btn" onclick="downloadDocx()">⬇ Word (.docx)</button>
+      <button class="export-btn" onclick="downloadTxt()">⬇ TXT</button>
+      <button class="export-btn" onclick="downloadMd()">⬇ Markdown</button>
+      <button class="export-btn" onclick="emailCV()">✉ Email</button>
+      <button class="export-btn" id="copyLinkBtn" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── CURSOR ───────────────────────────────────────
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animateCursor() {
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// ─── MODE SELECTOR ────────────────────────────────
+function selectMode(mode) {
+  sessionStorage.setItem('portfolioMode', mode);
+  document.getElementById('modeOverlay').classList.add('hidden');
+  setTimeout(() => { document.getElementById('modeOverlay').style.display = 'none'; }, 600);
+}
+// Auto-dismiss if already chosen this session
+if (sessionStorage.getItem('portfolioMode')) {
+  document.getElementById('modeOverlay').style.display = 'none';
+}
+
+// ─── SCROLL REVEAL ────────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+
+// ─── CV VARIANTS ──────────────────────────────────
+const cvData = {
+  aiml: {
+    title: 'AI / ML Engineer',
+    headline: 'AI & ML Engineer Intern Candidate',
+    summary: 'Computer Engineering & AI student at HKUST specializing in deep learning, agentic AI systems, and RAG pipelines. Built production-level ML models and autonomous agents with real-world impact.',
+    projects: [
+      { name: 'AI-Generated Image Detector (CNN)', detail: 'TensorFlow CNN, 94% validation accuracy, 5,000+ samples, dropout regularization, F1/confusion matrix evaluation.' },
+      { name: 'Strategic Game AI (Minimax + Alpha-Beta)', detail: 'Evaluates 10,000+ board states/sec. Custom heuristics for Connect4 and card games.' },
+      { name: 'International Student Support Agent (RAG)', detail: 'Dify + RAG, 50+ vectorized document pages, prompt engineering for empathy and privacy.' },
+      { name: 'Hot-Topic Automation (n8n + Ollama)', detail: 'Local LLM, PostgreSQL, sentiment analysis, 90% reduction in manual research.' },
+    ],
+    skills: 'Python, TensorFlow, RAG, Dify, n8n, Ollama, Prompt Engineering, MCP, AWS ML, Docker, PostgreSQL',
+  },
+  swe: {
+    title: 'Software Engineer',
+    headline: 'Software Engineer Intern Candidate',
+    summary: 'Full-stack developer and systems thinker with experience across embedded C++, Python backend, React frontend, and cloud-integrated applications. Strong DSA fundamentals via competitive game AI development.',
+    projects: [
+      { name: 'AI Link-Saver & Summarizer (Full-Stack)', detail: 'Cross-platform app, LLM API integration, cloud-sync database, 100+ daily links handled.' },
+      { name: 'C++ PvE Combat Engine', detail: 'OOP architecture, state-machine combat, 10+ difficulty levels, no external libraries, memory-optimized.' },
+      { name: 'Strategic Game AI (Minimax)', detail: '10,000+ board states/sec, alpha-beta pruning, heuristic design.' },
+      { name: 'Precision Line-Follower (Arduino)', detail: 'Embedded C++, PID-inspired firmware, 90% precision on sharp-turn tracks.' },
+    ],
+    skills: 'Python, C++, JavaScript, React, HTML5/CSS3, Arduino, Docker, PostgreSQL, Git, GitHub Pages',
+  },
+  pm: {
+    title: 'Product Manager',
+    headline: 'Product Manager Intern Candidate',
+    summary: 'Technically literate product thinker with hands-on prototyping experience and strong communication skills. Led engineering teams, managed stakeholder relationships, and shipped cross-platform tools from zero to live.',
+    projects: [
+      { name: 'AI Link-Saver & Summarizer', detail: 'Identified user need, prototyped and shipped cross-platform productivity app. Handled UX, API design, and deployment.' },
+      { name: 'Sport Climbing Society Webpage', detail: 'Directed Figma-to-code UI/UX overhaul. Improved registration flow and event access for 200+ members.' },
+      { name: 'Combat Bot — Team Lead', detail: 'Led 4-person team, managed build timeline, delivered winning technical presentation to judges panel.' },
+      { name: 'International Student Support Agent', detail: 'Defined requirements, iterated on prompt engineering, ensured privacy compliance and empathetic UX.' },
+    ],
+    skills: 'Figma, React, AI Prototyping, Prompt Engineering, Dify, Technical Presentation, Stakeholder Management, Git',
+  },
+  robotics: {
+    title: 'Robotics / Embedded',
+    headline: 'Robotics & Embedded Systems Intern Candidate',
+    summary: 'Hands-on robotics engineer with competition experience. Proficient in Arduino embedded systems, BLE integration, C++ firmware, PID control, and hardware-software co-design.',
+    projects: [
+      { name: 'Combat Bot — 1st Place', detail: 'Led 4-man team. Arduino BLE, custom mobile controller app, optimized mechanical design. Fastest time across 20+ teams.' },
+      { name: 'Precision Line-Follower', detail: 'IR sensor array, PID-inspired C++ firmware, 90% precision on sharp turns, circuit soldering, voltage regulation.' },
+      { name: 'C++ PvE Combat Engine', detail: 'Demonstrates strong OOP and memory management fundamentals critical for embedded systems.' },
+    ],
+    skills: 'C++, Arduino IDE, BLE, PID Control, IR Sensors, Circuit Soldering, Voltage Regulation, Shapr3D, Embedded Firmware',
+  },
+  bd: {
+    title: 'Business Development',
+    headline: 'Business Development Intern Candidate',
+    summary: 'Relationship builder and strategic communicator with proven experience securing corporate sponsorships, managing 200+ member communities, and representing organizations to government bodies and industry partners.',
+    projects: [
+      { name: 'HKUST Sport Climbing Society VP', detail: 'Negotiated 5 corporate sponsorships. Presented to HKUST Sports Dept and LCSD for facility funding. 25% membership growth.' },
+      { name: 'Lead Climbing Coach', detail: 'Client-facing instruction for 20+ students. Managed 300+ entry client database. Stakeholder coordination between management and clients.' },
+      { name: 'AI Link-Saver & Summarizer', detail: 'Identifies market need, prototypes solution, demonstrates product-market fit thinking.' },
+    ],
+    skills: 'Sponsorship Negotiation, Public Speaking, Stakeholder Management, Excel (300+ client DB), Technical Presentation, Community Growth',
+  },
+  climbing: {
+    title: 'Sport Climbing Coach',
+    headline: 'Sport Climbing Coach & Instructor',
+    summary: 'Hong Kong National Climbing Team member with hands-on coaching experience across lead, bouldering, and top-rope disciplines. Translates complex biomechanics into accessible, personalized training programs.',
+    projects: [
+      { name: 'Lead Climbing Coach — Commercial Gyms', detail: 'Customized programs for 20+ students. Focus on technique, safety, and biomechanical efficiency.' },
+      { name: 'HKUST Sport Climbing Society VP', detail: 'Directed operations for 200+ members. Organized competitions, training camps, and community events.' },
+      { name: 'National Team Athlete', detail: 'Member of the Hong Kong National Climbing Team. High-performance training and competition experience.' },
+    ],
+    skills: 'Lead Climbing Instruction, Bouldering Coaching, Belay Certification, Biomechanics, Program Design, Community Management',
+  },
+  frontend: {
+    title: 'Frontend Designer',
+    headline: 'Frontend Designer & UI Engineer Intern',
+    summary: 'UI-focused developer with strong design sensibility. Experienced in Figma-to-code workflows, React, Framer Motion animation, and AI-augmented development. Builds interfaces that look as good as they function.',
+    projects: [
+      { name: 'Personal Portfolio Website', detail: 'React + Framer Motion + React Three Fiber. Mode-switching (3D Ultimate / Light), CV generator, cinematic scroll.' },
+      { name: 'Sport Climbing Society Webpage', detail: 'Figma UI/UX overhaul to code. Responsive, accessible, Git-managed, deployed on GitHub Pages.' },
+      { name: 'AI Link-Saver & Summarizer', detail: 'Cross-platform UI, cloud sync, mobile/desktop responsive design.' },
+      { name: 'Python Turtle Vector Renderer', detail: 'Computational geometry, scaling algorithm, 500+ path nodes — demonstrates precision spatial thinking.' },
+    ],
+    skills: 'React, Framer Motion, Figma, Tailwind CSS, HTML5/CSS3, JavaScript, GitHub Pages, UI/UX Design, AI-Augmented Dev',
+  },
+};
+
+let currentVariant = null;
+
+function selectVariant(key, btn) {
+  document.querySelectorAll('.cv-variant-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentVariant = key;
+  openCV();
+}
+
+function buildCVHTML(key) {
+  const d = cvData[key];
+  return `
+    <h1>Lai [Your Name]</h1>
+    <h2>${d.headline}</h2>
+    <div class="cv-contact">📧 tototofu0601@gmail.com &nbsp;|&nbsp; 📍 Hong Kong &nbsp;|&nbsp; 🌐 lai.codes &nbsp;|&nbsp; ⌥ github.com/tototofu123</div>
+    <h3>Summary</h3>
+    <p>${d.summary}</p>
+    <h3>Education</h3>
+    <p><strong>HKUST</strong> — BEng Computer Engineering & AI (Expected 2027)</p>
+    <p style="color:#666;font-size:0.75rem;">Data Structures · AI Foundations · Robotics · Embedded Systems</p>
+    <h3>Relevant Projects</h3>
+    ${d.projects.map(p => `<p><strong>${p.name}</strong><br/><span style="color:#444;font-size:0.75rem;">${p.detail}</span></p>`).join('')}
+    <h3>Skills</h3>
+    <p>${d.skills}</p>
+    <h3>Leadership</h3>
+    <p><strong>VP & Team Captain</strong> — HKUST Sport Climbing Society (200+ members, 5 sponsorships, 25% growth)</p>
+    <p><strong>Lead Climbing Coach</strong> — 20+ students, 300+ client database</p>
+    <p><strong>National Athlete</strong> — Hong Kong National Climbing Team</p>
+  `;
+}
+
+function buildCVText(key) {
+  const d = cvData[key];
+  return `LAI [YOUR NAME]
+${d.headline}
+tototofu0601@gmail.com | Hong Kong | lai.codes | github.com/tototofu123
+
+SUMMARY
+${d.summary}
+
+EDUCATION
+HKUST — BEng Computer Engineering & AI (Expected 2027)
+Relevant: Data Structures, AI Foundations, Robotics, Embedded Systems
+
+RELEVANT PROJECTS
+${d.projects.map(p => `• ${p.name}\n  ${p.detail}`).join('\n\n')}
+
+SKILLS
+${d.skills}
+
+LEADERSHIP
+• VP & Team Captain — HKUST Sport Climbing Society (200+ members, 5 sponsorships)
+• Lead Climbing Coach — 20+ students, 300+ client DB
+• National Athlete — Hong Kong National Climbing Team
+`;
+}
+
+function buildCVMarkdown(key) {
+  const d = cvData[key];
+  return `# Lai [Your Name]
+**${d.headline}**
+
+📧 tototofu0601@gmail.com | 📍 Hong Kong | 🌐 lai.codes | ⌥ github.com/tototofu123
+
+## Summary
+${d.summary}
+
+## Education
+**HKUST** — BEng Computer Engineering & AI *(Expected 2027)*
+> Data Structures · AI Foundations · Robotics · Embedded Systems
+
+## Relevant Projects
+${d.projects.map(p => `### ${p.name}\n${p.detail}`).join('\n\n')}
+
+## Skills
+${d.skills}
+
+## Leadership
+- **VP & Team Captain** — HKUST Sport Climbing Society (200+ members, 5 sponsorships, 25% growth)
+- **Lead Climbing Coach** — 20+ students, 300+ client database
+- **National Athlete** — Hong Kong National Climbing Team
+`;
+}
+
+function openCV() {
+  if (!currentVariant) return;
+  const d = cvData[currentVariant];
+  document.getElementById('cvModalTitle').textContent = `CV Preview — ${d.title}`;
+  document.getElementById('cvPreview').innerHTML = buildCVHTML(currentVariant);
+  document.getElementById('cvModal').classList.add('open');
+}
+
+function closeCV() {
+  document.getElementById('cvModal').classList.remove('open');
+}
+
+function downloadTxt() {
+  const blob = new Blob([buildCVText(currentVariant)], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `Lai_CV_${currentVariant}.txt`; a.click();
+}
+
+function downloadMd() {
+  const blob = new Blob([buildCVMarkdown(currentVariant)], { type: 'text/markdown' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `Lai_CV_${currentVariant}.md`; a.click();
+}
+
+function downloadPDF() {
+  window.print();
+}
+
+function downloadDocx() {
+  alert('DOCX export — in the real build this uses the `docx` npm package with @react-pdf/renderer. Coming in Sprint 4!');
+}
+
+function emailCV() {
+  const link = `${window.location.origin}${window.location.pathname}?cv=${currentVariant}`;
+  window.location.href = `mailto:?subject=Lai's CV — ${cvData[currentVariant].title}&body=Here's my tailored CV for ${cvData[currentVariant].title}:%0A%0A${link}`;
+}
+
+function copyLink() {
+  const link = `${window.location.origin}${window.location.pathname}?cv=${currentVariant}`;
+  navigator.clipboard.writeText(link).then(() => {
+    const btn = document.getElementById('copyLinkBtn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '🔗 Copy Link'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Handle ?cv= URL param
+const params = new URLSearchParams(window.location.search);
+if (params.get('cv') && cvData[params.get('cv')]) {
+  currentVariant = params.get('cv');
+  setTimeout(() => {
+    document.querySelectorAll('.cv-variant-btn').forEach(b => {
+      if (b.getAttribute('onclick').includes(currentVariant)) b.classList.add('active');
+    });
+    openCV();
+  }, 800);
+}
+</script>
 </body>
 </html>
