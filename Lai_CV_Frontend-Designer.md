@@ -1,0 +1,78 @@
+# [Your Name]
+**Frontend Designer / UI Engineer Intern**
+
+tototofu0601@gmail.com | +852 6618 6981 | github.com/tototofu123 | lai.codes | Hong Kong
+
+---
+
+## Summary
+
+Design-minded frontend engineer working fluently between Figma and production code. Builds responsive, polished interfaces with strong layout sensibility. Experienced in AI-augmented development workflows, GitHub deployment, and UI/UX design.
+
+---
+
+## Education
+
+**The Hong Kong University of Science and Technology (HKUST)**
+BEng Computer Engineering & AI — Expected 2027
+- Relevant Coursework: Data Structures, AI Foundations, Robotics, Embedded Systems
+- Key Strengths: Technical communication, analytical problem-solving, collaborative project leadership
+
+**TWGHS Wong Fut Nam College** — Class of 2023
+- Level 5* English (Speaking); Level 5 English, Mathematics, Physics
+- Mathematics Club Committee Member
+
+---
+
+## Frontend & Design Projects
+
+**Sport Climbing Society Webpage** | Figma · JavaScript · GitHub Pages
+- Directed full UI/UX overhaul using Figma; improved site architecture for prospective member discovery
+- Implemented responsive front-end with streamlined access to registration links and event schedules
+- Used AI-assisted code generation to bridge design prototypes to live GitHub deployment
+- Maintained Git version control for iterative updates and clean collaborative codebase
+
+**AI Link-Saver & Summarizer (Full-Stack)** | JavaScript · LLM API · Cloud DB
+- Developed cross-platform productivity app with cloud-synchronised database across mobile and desktop
+- Debugged cross-platform fetching issues including video-based social media metadata edge cases
+
+**Python Turtle Vector Renderer** | Python · Computational Geometry
+- Hand-coded interpreter translating image coordinates into precise vector paths
+- Mapped 500+ path nodes for complex shapes; automated scaling for resolution-independent rendering
+- Applied computational geometry to reduce redundant strokes and improve rendering efficiency
+
+**All-in-One Combat Bot — Mobile Controller UI** | Mobile App · BLE · Arduino
+- Designed and built the mobile controller application integrated with Arduino BLE module
+- Part of the 1st-place team — fastest navigation time among 20+ competing teams
+
+**International Student Support Agent — Conversational UX** | Dify · Prompt Engineering
+- Iterated on system prompt engineering for empathetic, professional tone on sensitive topics
+- Implemented privacy guards within prompt logic for user anonymity
+
+---
+
+## Experience
+
+**Vice President & Team Captain** — HKUST Sport Climbing Society | 2024 – Present
+- Directed operations for 200+ members; facilitated 25% growth in active participation
+- Secured 5 corporate sponsorships; delivered presentations to HKUST Sports Dept and LCSD
+
+**Lead Climbing Coach & Data Manager** — Lead Climbing Gyms | 2024 – Present
+- Managed 300+ entry client database in Excel; improved operational efficiency and retention tracking
+- Delivered customised training programmes for 20+ students
+
+---
+
+## Certifications
+
+- Introduction to HTML5 & CSS3 — University of Michigan (2026)
+- Interactivity with JavaScript — University of Michigan (2026)
+- Advanced Creative Thinking and AI: Tools for Success — Imperial College London (2026)
+
+---
+
+## Skills
+
+- **Frontend & Design:** JavaScript, HTML5/CSS3, Figma, UI/UX Design, Responsive Layout, GitHub Pages, Git
+- **AI-Augmented Workflow:** AI-Assisted Code Generation, Prompt Engineering, GitHub Deployment
+- **Also comfortable with:** Python, C++, Arduino IDE, Shapr3D, PostgreSQL, Docker

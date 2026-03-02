@@ -1,0 +1,130 @@
+/* CV Print Styles */
+@media screen {
+    .cv-container {
+        max-width: 210mm;
+        margin: 2rem auto;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        background: white;
+        min-height: 297mm;
+    }
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    body {
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .cv-container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        box-shadow: none;
+        padding: 15mm !important;
+    }
+
+    /* Prevent page breaks inside sections */
+    .cv-section {
+        break-inside: avoid;
+    }
+}
+
+.cv-container {
+    padding: 20mm;
+    color: #1a1a1a;
+    font-size: 10pt;
+    line-height: 1.5;
+}
+
+.cv-header {
+    border-bottom: 2px solid #e06c55;
+    /* terra */
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cv-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28pt;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.cv-title {
+    font-family: 'Figtree', sans-serif;
+    font-size: 14pt;
+    color: #e06c55;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.cv-contact {
+    font-family: 'Figtree', sans-serif;
+    font-size: 8.5pt;
+    color: #666;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+}
+
+.cv-section-title {
+    font-family: 'Figtree', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.cv-item-title {
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+.cv-item-sub {
+    font-style: italic;
+    color: #444;
+}
+
+.cv-item-date {
+    font-family: 'Figtree', sans-serif;
+    font-size: 8.5pt;
+    color: #888;
+}
+
+.cv-list {
+    margin-top: 0.4rem;
+    padding-left: 1rem;
+    list-style-type: disc;
+}
+
+.cv-list li {
+    margin-bottom: 0.2rem;
+}
+
+.cv-skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.cv-skill-group b {
+    display: block;
+    font-size: 9pt;
+    margin-bottom: 0.1rem;
+}
