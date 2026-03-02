@@ -59,7 +59,7 @@ BEng Computer Engineering & AI — Expected 2027
 ## Skills
 
 - **Embedded & Hardware:** C++, Arduino IDE, BLE, PID Control, IR Sensors, Circuit Soldering, Voltage Regulation, Shapr3D
-- **Software:** Python, Git, Docker, PostgreSQL
+- **Software:** Python, JavaScript, Git, Docker, PostgreSQL
 - **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)
 - **Concepts:** OOP, State Machines, Embedded Firmware, Robotics Integration
 

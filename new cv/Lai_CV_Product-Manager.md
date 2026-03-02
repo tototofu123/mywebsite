@@ -71,5 +71,5 @@ BEng Computer Engineering & AI — Expected 2027
 ## Skills
 
 - **Communication & Leadership:** Public Speaking, Technical Presentation, Stakeholder Management, Sponsorship Negotiation
-- **Technical:** Python, Figma, Git, Prompt Engineering, AI-Augmented Prototyping
+- **Technical:** Python, JavaScript, Figma, Git, Prompt Engineering, AI-Augmented Prototyping
 - **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)

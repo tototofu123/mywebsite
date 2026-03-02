@@ -80,6 +80,6 @@ BEng Computer Engineering & AI — Expected 2027
 ## Skills
 
 - **AI & Agents:** TensorFlow, RAG, Dify, n8n, Ollama, Prompt Engineering, MCP, AWS ML, Agentic AI
-- **Programming:** Python, C++, HTML5/CSS3
+- **Programming:** Python, C++, JavaScript, HTML5/CSS3
 - **Tools:** Docker, PostgreSQL, Git, Arduino IDE
 - **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)

@@ -80,7 +80,7 @@ BEng Computer Engineering & AI — Expected 2027
 
 ## Skills
 
-- **Programming:** Python, C++, HTML5/CSS3
+- **Programming:** Python, C++, JavaScript, HTML5/CSS3
 - **Tools:** Git, Docker, PostgreSQL, Arduino IDE, Figma, n8n, Ollama, TensorFlow
 - **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)
 - **Concepts:** OOP, State Machines, Embedded Firmware, AI-Augmented Development

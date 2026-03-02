@@ -73,7 +73,7 @@ BEng Computer Engineering & AI — Expected 2027
 
 ## Skills
 
-- **Frontend & Design:** HTML5/CSS3, Figma, UI/UX Design, Responsive Layout, GitHub Pages, Git
+- **Frontend & Design:** JavaScript, HTML5/CSS3, Figma, UI/UX Design, Responsive Layout, GitHub Pages, Git
 - **AI-Augmented Workflow:** AI-Assisted Code Generation, Prompt Engineering, GitHub Deployment
 - **Also comfortable with:** Python, C++, Arduino IDE, Shapr3D, PostgreSQL, Docker
 - **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)

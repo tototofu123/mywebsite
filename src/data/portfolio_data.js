@@ -176,7 +176,7 @@ export const portfolioData = {
         }
     ],
     skills: {
-        programming: ["Python", "C++", "HTML5/CSS3"],
+        programming: ["Python", "C++", "JavaScript", "HTML5/CSS3"],
         ai: ["Agentic AI", "RAG", "MCP", "Prompt Engineering", "Dify", "n8n", "Ollama", "TensorFlow", "AWS ML"],
         workflows: ["AI-Augmented Prototyping", "GitHub Deployment", "Figma", "UI/UX Design"],
         engineering: ["Arduino IDE", "Robotics Integration", "Shapr3D"],
