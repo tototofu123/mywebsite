@@ -22,7 +22,18 @@ const HeroLight = () => {
     };
 
     return (
-        <section className="min-h-screen flex flex-col justify-center px-8 md:px-24">
+        <section className="min-h-screen flex flex-col justify-center px-8 md:px-24 relative overflow-hidden">
+            {/* Ambient Background Video */}
+            <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none"
+                src="/media/hero-ambient.mp4"
+            />
+            <div className="absolute inset-0 bg-cream/80 pointer-events-none" />
+
             <motion.div
                 variants={container}
                 initial="hidden"

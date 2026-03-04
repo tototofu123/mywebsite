@@ -8,9 +8,7 @@ const ProjectsLight = () => {
         hidden: { opacity: 0 },
         show: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
+            transition: { staggerChildren: 0.1 }
         }
     };
 
@@ -50,36 +48,51 @@ const ProjectsLight = () => {
                         <motion.div
                             key={project.id}
                             variants={item}
-                            className={`group relative bg-white border border-ink/5 p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-xl hover:shadow-terra/5 ${i % 3 === 1 ? 'md:translate-y-12' : ''}`}
+                            className={`group relative bg-white border border-ink/5 flex flex-col overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-terra/5 ${i % 3 === 1 ? 'md:translate-y-12' : ''}`}
                         >
-                            {/* Hover Overlay */}
-                            <div className="absolute inset-x-0 bottom-0 h-0 bg-terra group-hover:h-full transition-all duration-500 ease-[0.22,1,0.36,1] z-0" />
+                            {/* Project image thumbnail */}
+                            {project.image && (
+                                <div className="relative h-44 overflow-hidden bg-ink/5 shrink-0">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
+                                </div>
+                            )}
 
-                            <div className="relative z-10">
-                                <span className="font-sans text-[9px] uppercase tracking-[0.2em] text-ink-3 group-hover:text-white/60 transition-colors mb-4 block">
-                                    {project.category}
-                                </span>
-                                <h3 className="text-2xl font-display mb-6 group-hover:text-white transition-colors">
-                                    {project.title}
-                                </h3>
-                                <ul className="space-y-3">
-                                    {project.achievements.map((ach, j) => (
-                                        <li key={j} className="font-sans text-xs text-ink-3 group-hover:text-white/80 transition-colors flex gap-2">
-                                            <span className="text-terra group-hover:text-white mt-1 shrink-0">•</span>
-                                            {ach}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                            {/* Card content */}
+                            <div className="relative p-8 flex flex-col flex-1 justify-between">
+                                {/* Hover fill overlay */}
+                                <div className="absolute inset-x-0 bottom-0 h-0 bg-terra group-hover:h-full transition-all duration-500 ease-[0.22,1,0.36,1] z-0" />
 
-                            <div className="relative z-10 mt-12 flex justify-between items-end">
-                                <span className="font-display italic text-lg text-ink-2 group-hover:text-white/90 transition-colors">
-                                    {project.role}
-                                </span>
-                                <div className="w-8 h-8 rounded-full border border-ink/10 flex items-center justify-center group-hover:border-white/20 transition-colors">
-                                    <svg className="w-3 h-3 text-ink group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
+                                <div className="relative z-10">
+                                    <span className="font-sans text-[9px] uppercase tracking-[0.2em] text-ink-3 group-hover:text-white/60 transition-colors mb-4 block">
+                                        {project.category}
+                                    </span>
+                                    <h3 className="text-2xl font-display mb-6 group-hover:text-white transition-colors">
+                                        {project.title}
+                                    </h3>
+                                    <ul className="space-y-3">
+                                        {project.achievements.map((ach, j) => (
+                                            <li key={j} className="font-sans text-xs text-ink-3 group-hover:text-white/80 transition-colors flex gap-2">
+                                                <span className="text-terra group-hover:text-white mt-1 shrink-0">•</span>
+                                                {ach}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <div className="relative z-10 mt-12 flex justify-between items-end">
+                                    <span className="font-display italic text-lg text-ink-2 group-hover:text-white/90 transition-colors">
+                                        {project.role}
+                                    </span>
+                                    <div className="w-8 h-8 rounded-full border border-ink/10 flex items-center justify-center group-hover:border-white/20 transition-colors">
+                                        <svg className="w-3 h-3 text-ink group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>

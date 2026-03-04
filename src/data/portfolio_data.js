@@ -31,6 +31,7 @@ export const portfolioData = {
             category: "Robotics & Embedded Systems",
             title: "All-in-One Combat Bot",
             role: "Lead Robotics Engineer",
+            image: "/media/project-robot.jpg",
             achievements: [
                 "Directed a 4-man engineering team to design and assemble a high-performance combat robot for speed-running and battling.",
                 "Developed a custom mobile control application and integrated it with an Arduino-based Bluetooth low-energy (BLE) module.",
@@ -43,6 +44,7 @@ export const portfolioData = {
             category: "Robotics & Embedded Systems",
             title: "Precision Line-Follower (Arduino)",
             role: "Engineer",
+            image: "/media/project-robot.jpg",
             achievements: [
                 "Engineered an autonomous vehicle utilizing IR sensor arrays for high-speed obstacle navigation.",
                 "Programmed embedded firmware in C++ using PID-inspired logic.",
@@ -65,6 +67,7 @@ export const portfolioData = {
             category: "AI-Augmented Development",
             title: "Sport Climbing Society Webpage",
             role: "Lead UI/UX & Frontend Developer",
+            image: "/media/project-climbing-site.png",
             achievements: [
                 "Directed digital UI/UX overhaul using Figma, improving site architecture.",
                 "Implemented responsive frontend using AI-assisted code generation.",
@@ -87,6 +90,7 @@ export const portfolioData = {
             category: "Deep Learning & Game Intelligence",
             title: "AI-Generated Image Detector (CNN)",
             role: "ML Engineer",
+            image: "/media/project-cnn.png",
             achievements: [
                 "Engineered a deep CNN using TensorFlow to classify real vs. AI imagery.",
                 "Achieved 94% validation accuracy using a dataset of 5,000+ samples.",
@@ -98,6 +102,7 @@ export const portfolioData = {
             category: "Deep Learning & Game Intelligence",
             title: "Strategic Game Intelligence (Minimax)",
             role: "AI Developer",
+            image: "/media/project-connect4.png",
             achievements: [
                 "Developed AI agents for Connect4 and card games using Minimax with Alpha-Beta pruning.",
                 "Optimized search depth to evaluate 10,000+ board states per second.",
@@ -120,6 +125,7 @@ export const portfolioData = {
             category: "AI Agents & Automation",
             title: "International Student Support Agent",
             role: "AI Workflow Engineer (Dify/RAG)",
+            image: "/media/project-dify.png",
             achievements: [
                 "Built AI workflow using Dify and RAG to assist students with integration.",
                 "Vectorized 50+ pages of documentation for context-aware advice.",
@@ -131,6 +137,7 @@ export const portfolioData = {
             category: "AI Agents & Automation",
             title: "Hot-Topic Automation (n8n)",
             role: "Automation Engineer",
+            image: "/media/project-n8n.png",
             achievements: [
                 "Created multi-stage autonomous agent in n8n via Docker.",
                 "Integrated Ollama (local LLM) and PostgreSQL.",
