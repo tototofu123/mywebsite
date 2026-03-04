@@ -1,4 +1,4 @@
-# [Your Name]
+# Toto Lai Man To
 **Product Manager Intern**
 
 tototofu0601@gmail.com | +852 6618 6981 | github.com/tototofu123 | lai.codes | Hong Kong
@@ -55,9 +55,6 @@ BEng Computer Engineering & AI — Expected 2027
 - Primary spokesperson to HKUST Sports Department and LCSD; delivered presentations for facility funding approval
 - Negotiated and secured 5 corporate sponsorships through professional pitching with local industry partners
 
-**Lead Climbing Coach & Data Manager** — Lead Climbing Gyms | 2024 – Present
-- Delivered customised training programmes for 20+ students
-- Managed 300+ entry client database; coordinated schedules and resolved service-level issues
 
 ---
 
@@ -72,4 +69,4 @@ BEng Computer Engineering & AI — Expected 2027
 
 - **Communication & Leadership:** Public Speaking, Technical Presentation, Stakeholder Management, Sponsorship Negotiation
 - **Technical:** Python, JavaScript, Figma, Git, Prompt Engineering, AI-Augmented Prototyping
-- **Languages:** English (fluent), Cantonese (native)
+- **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)

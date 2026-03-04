@@ -1,4 +1,4 @@
-# [Your Name]
+# Toto Lai Man To
 **Business Development Intern**
 
 tototofu0601@gmail.com | +852 6618 6981 | github.com/tototofu123 | lai.codes | Hong Kong
@@ -31,10 +31,6 @@ BEng Computer Engineering & AI — Expected 2027
 - Acted as primary spokesperson to HKUST Sports Department and LCSD; delivered presentations for facility funding
 - Negotiated and secured 5 corporate sponsorships through professional pitching with local industry partners
 
-**Lead Climbing Coach & Data Manager** — Lead Climbing Gyms | 2024 – Present
-- Delivered customised training programmes for 20+ students, translating complex biomechanics into actionable concepts
-- Managed client database of 300+ entries in Excel; improved operational efficiency and student retention metrics
-- Facilitated relations between management and clients; coordinated schedules and resolved service-level issues
 
 **National Athlete** — Hong Kong National Climbing Team | Ongoing
 - Member of the Hong Kong National Climbing Team
@@ -66,5 +62,5 @@ BEng Computer Engineering & AI — Expected 2027
 
 - **Business & Communication:** Public Speaking, Technical Presentation, Stakeholder Management, Sponsorship Negotiation, Team Leadership (200+)
 - **Technical (supporting):** Python, Excel, Figma, Git, Prompt Engineering, AI-Augmented Prototyping
-- **Languages:** English (fluent), Cantonese (native)
+- **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)
 - **Other Interests:** 3D Modelling (Shapr3D), Rubik's Cube Speed-solving, BAFS Financial Management

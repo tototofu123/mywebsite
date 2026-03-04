@@ -1,4 +1,4 @@
-# [Your Name]
+# Toto Lai Man To
 **Frontend Designer / UI Engineer Intern**
 
 tototofu0601@gmail.com | +852 6618 6981 | github.com/tototofu123 | lai.codes | Hong Kong
@@ -57,9 +57,6 @@ BEng Computer Engineering & AI — Expected 2027
 - Directed operations for 200+ members; facilitated 25% growth in active participation
 - Secured 5 corporate sponsorships; delivered presentations to HKUST Sports Dept and LCSD
 
-**Lead Climbing Coach & Data Manager** — Lead Climbing Gyms | 2024 – Present
-- Managed 300+ entry client database in Excel; improved operational efficiency and retention tracking
-- Delivered customised training programmes for 20+ students
 
 ---
 
@@ -76,3 +73,4 @@ BEng Computer Engineering & AI — Expected 2027
 - **Frontend & Design:** JavaScript, HTML5/CSS3, Figma, UI/UX Design, Responsive Layout, GitHub Pages, Git
 - **AI-Augmented Workflow:** AI-Assisted Code Generation, Prompt Engineering, GitHub Deployment
 - **Also comfortable with:** Python, C++, Arduino IDE, Shapr3D, PostgreSQL, Docker
+- **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)

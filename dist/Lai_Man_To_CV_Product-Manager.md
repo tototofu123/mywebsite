@@ -1,0 +1,64 @@
+# Lai Man To
+**Product Manager Intern**
+
+tototofu0601@gmail.com | +852 6618 6981 | github.com/tototofu123 | lai.codes | Hong Kong
+
+---
+
+## Summary
+
+Technically literate product thinker who has shipped cross-platform tools, led a 4-person engineering team to 1st place, overhauled UI/UX for a 200+ member organisation, and managed sponsorship relationships from pitch to close.
+
+---
+
+## Education
+
+**BEng Computer Engineering & AI** — The Hong Kong University of Science and Technology (HKUST) | Expected 2027
+- Relevant: Data Structures, AI Foundations, Robotics, Embedded Systems
+
+**HKDSE** — TWGHS Wong Fut Nam College | Class of 2023
+- Level 5* English (Speaking); Level 5 English, Mathematics, Physics
+
+---
+
+## Projects
+
+**Sport Climbing Society Webpage** | *Figma · GitHub · AI-Assisted Development*
+- Directed full UI/UX overhaul in Figma; implemented responsive front-end with streamlined registration flow
+- Used AI-assisted code generation to bridge Figma prototypes to live GitHub deployment; Git version control
+
+**AI Link-Saver & Summarizer** | *JavaScript · LLM API · Cloud DB*
+- Identified pain point, defined scope, and shipped full-stack solution handling 100+ daily links across platforms
+
+**International Student Support Agent** | *Dify · RAG · Prompt Engineering*
+- Defined requirements, iterated conversational UX, shipped to student population with privacy compliance
+
+**All-in-One Combat Bot — Team Lead** | *Arduino · C++ · BLE*
+- Led 4-person team; managed timeline and blockers; 1st place among 20+ teams
+- Delivered technical presentation on system architecture to panel of judges
+
+---
+
+## Experience
+
+**Vice President & Team Captain** — HKUST Sport Climbing Society | 2024 – Present
+- Directed operations for 200+ members; 25% growth; maintained Git-managed digital presence
+- Primary spokesperson to HKUST Sports Dept and LCSD; secured 5 corporate sponsorships
+
+**Climbing Coach & Counter Staff** — Lead Climbing Gyms | 2024 – Present
+- Managed 300+ entry client database; coordinated schedules and resolved service-level issues
+
+---
+
+## Certifications
+
+- AI Literacy for All — Digital Education Council x HKUST (2025)
+- Advanced Creative Thinking and AI: Tools for Success — Imperial College London (2026)
+
+---
+
+## Skills
+
+- **Communication & Leadership:** Public Speaking, Technical Presentation, Stakeholder Management, Sponsorship Negotiation
+- **Technical:** Python, JavaScript, Figma, Git, Prompt Engineering, AI-Augmented Prototyping
+- **Languages:** English (native), Cantonese (native), Mandarin (native), Hakka (intermediate)

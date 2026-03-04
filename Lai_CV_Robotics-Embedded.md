@@ -1,4 +1,4 @@
-# [Your Name]
+# Toto Lai Man To
 **Robotics / Embedded Systems Intern**
 
 tototofu0601@gmail.com | +852 6618 6981 | github.com/tototofu123 | lai.codes | Hong Kong
@@ -50,16 +50,14 @@ BEng Computer Engineering & AI — Expected 2027
 - Directed operations for 200+ members; facilitated 25% growth in active participation
 - Secured 5 corporate sponsorships; delivered presentations to HKUST Sports Dept and LCSD
 
-**Lead Climbing Coach & Data Manager** — Lead Climbing Gyms | 2024 – Present
-- Managed 300+ entry client database in Excel; improved operational efficiency and retention tracking
-- Delivered customised training programmes for 20+ students
 
 ---
 
 ## Skills
 
 - **Embedded & Hardware:** C++, Arduino IDE, BLE, PID Control, IR Sensors, Circuit Soldering, Voltage Regulation, Shapr3D
-- **Software:** Python, C (Basic), JavaScript, Git, Docker, PostgreSQL
+- **Software:** Python, JavaScript, Git, Docker, PostgreSQL
+- **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)
 - **Concepts:** OOP, State Machines, Embedded Firmware, Robotics Integration
 
 ---

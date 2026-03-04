@@ -4,8 +4,35 @@ import CVRenderer from './CVRenderer';
 import { cvVariants } from '../../data/portfolio_data';
 import '../../styles/CVStyles.css';
 
+const VARIANT_TO_FILENAME = {
+    aiml: 'Lai_Man_To_CV_AI-ML-Engineer',
+    swe: 'Lai_Man_To_CV_Software-Engineer',
+    pm: 'Lai_Man_To_CV_Product-Manager',
+    robotics: 'Lai_Man_To_CV_Robotics-Embedded',
+    bd: 'Lai_Man_To_CV_Business-Development',
+    frontend: 'Lai_Man_To_CV_Frontend-Designer',
+    climbing: 'Lai_Man_To_CV_Business-Development', // fallback
+};
+
 const CVLayout = ({ onClose }) => {
     const [activeVariant, setActiveVariant] = useState('swe');
+    const [downloadOpen, setDownloadOpen] = useState(false);
+
+    const getFileName = () => VARIANT_TO_FILENAME[activeVariant] || 'Lai_Man_To_CV_Software-Engineer';
+
+    const handleDownload = (ext) => {
+        const name = getFileName();
+        const url = ext === 'md'
+            ? `/${name}.md`
+            : `/files/${name}.${ext}`;
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${name}.${ext}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setDownloadOpen(false);
+    };
 
     const handlePrint = () => {
         window.print();
@@ -26,8 +53,8 @@ const CVLayout = ({ onClose }) => {
                             key={key}
                             onClick={() => setActiveVariant(key)}
                             className={`whitespace-nowrap font-sans text-[10px] uppercase tracking-widest px-4 py-2 rounded-full transition-all ${activeVariant === key
-                                    ? 'bg-terra text-white'
-                                    : 'bg-ink/5 text-ink-3 hover:bg-ink/10'
+                                ? 'bg-terra text-white'
+                                : 'bg-ink/5 text-ink-3 hover:bg-ink/10'
                                 }`}
                         >
                             {key}
@@ -35,16 +62,43 @@ const CVLayout = ({ onClose }) => {
                     ))}
                 </div>
 
-                <div className="flex items-center gap-6">
-                    <button
-                        onClick={handlePrint}
-                        className="group flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-ink hover:text-terra transition-colors"
-                    >
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                        </svg>
-                        Print PDF
-                    </button>
+                <div className="flex items-center gap-4">
+                    {/* Download dropdown */}
+                    <div className="relative">
+                        <button
+                            onClick={() => setDownloadOpen(o => !o)}
+                            className="group flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-ink hover:text-terra transition-colors"
+                        >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Download
+                            <svg className={`w-3 h-3 transition-transform ${downloadOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        {downloadOpen && (
+                            <div className="absolute right-0 top-full mt-2 bg-white border border-ink/10 rounded-xl shadow-lg overflow-hidden z-50 min-w-[140px]">
+                                {[['pdf', 'PDF'], ['docx', 'Word (.docx)'], ['md', 'Markdown'], ['txt', 'Plain Text']].map(([ext, label]) => (
+                                    <button
+                                        key={ext}
+                                        onClick={() => handleDownload(ext)}
+                                        className="w-full text-left px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-ink hover:bg-terra/10 hover:text-terra transition-colors"
+                                    >
+                                        {label}
+                                    </button>
+                                ))}
+                                <div className="border-t border-ink/5">
+                                    <button
+                                        onClick={handlePrint}
+                                        className="w-full text-left px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-ink hover:bg-terra/10 hover:text-terra transition-colors"
+                                    >
+                                        Print / Save PDF
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
 
                     <button
                         onClick={onClose}

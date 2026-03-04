@@ -1,4 +1,4 @@
-# [Your Name]
+# Toto Lai Man To
 **Software Engineer Intern**
 
 tototofu0601@gmail.com | +852 6618 6981 | github.com/tototofu123 | lai.codes | Hong Kong
@@ -64,10 +64,6 @@ BEng Computer Engineering & AI — Expected 2027
 - Directed operations for 200+ members; facilitated 25% growth in active participation
 - Secured 5 corporate sponsorships; delivered presentations to HKUST Sports Dept and LCSD
 
-**Lead Climbing Coach & Data Manager** — Lead Climbing Gyms | 2024 – Present
-- Managed 300+ entry client database in Excel; improved operational efficiency and retention tracking
-- Delivered customised training programmes for 20+ students
-
 ---
 
 ## Certifications
@@ -80,6 +76,7 @@ BEng Computer Engineering & AI — Expected 2027
 
 ## Skills
 
-- **Programming:** Python, C++, JavaScript, C (Basic), HTML5/CSS3
+- **Programming:** Python, C++, JavaScript, HTML5/CSS3
 - **Tools:** Git, Docker, PostgreSQL, Arduino IDE, Figma, n8n, Ollama, TensorFlow
+- **Languages:** Cantonese (Native), English (Native), Putonghua (Native), Hakka (Intermediate)
 - **Concepts:** OOP, State Machines, Embedded Firmware, AI-Augmented Development
