@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Signature Underline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* * We use the SVG 2.0 pathLength="1" attribute on the path element.
+         * This allows us to easily set stroke-dasharray and stroke-dashoffset to 1,
+         * regardless of the actual mathematical length of the complex bezier curve.
+         */
+        .signature-underline {
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+            animation: drawUnderline 1.2s ease-out forwards;
+        }
+
+        @keyframes drawUnderline {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Optional: Add a slight delay so the page can load before it starts */
+        .delay-draw {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+
+<body class="bg-[#FDFBF7] min-h-screen flex items-center justify-center font-sans antialiased">
+
+    <!-- Hero Section Context -->
+    <main class="text-center relative px-4">
+
+        <p class="text-gray-500 font-medium tracking-widest uppercase mb-4">Designer & Developer</p>
+
+        <div class="relative inline-block">
+            <h1 class="text-6xl md:text-8xl font-bold text-gray-900 tracking-tight z-10 relative">
+                Jane Doe
+            </h1>
+
+            <!-- SVG Underline Container -->
+            <!-- Positioned absolutely relative to the name, 800px wide, 40px tall -->
+            <div
+                class="absolute -bottom-4 md:-bottom-8 left-1/2 transform -translate-x-1/2 w-[800px] h-[40px] pointer-events-none opacity-90">
+                <svg viewBox="0 0 800 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full"
+                    preserveAspectRatio="none">
+                    <!-- 
+                        The path uses Cubic Bezier (C) and Smooth/Shorthand Bezier (S) curves 
+                        to create an organic, hand-drawn wobbly feel.
+                    -->
+                    <path d="M 15 25 C 120 40, 220 10, 380 25 S 650 35, 785 18" stroke="#B8613E" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" pathLength="1"
+                        class="signature-underline delay-draw" />
+                </svg>
+            </div>
+        </div>
+
+        <p class="mt-12 text-lg text-gray-600 max-w-lg mx-auto leading-relaxed">
+            Crafting beautiful, functional, and organic digital experiences.
+        </p>
+
+    </main>
+
+    <!-- Replay button (just for previewing the animation easily) -->
+    <button onclick="replayAnimation()"
+        class="absolute bottom-8 right-8 px-4 py-2 bg-white border border-gray-200 shadow-sm rounded-full text-sm font-medium text-gray-600 hover:text-gray-900 hover:shadow transition-all">
+        Replay Animation
+    </button>
+
+    <script>
+        // Helper function to re-trigger the CSS animation for preview purposes
+        function replayAnimation() {
+            const path = document.querySelector('.signature-underline');
+            // Remove animation class
+            path.style.animation = 'none';
+            // Force reflow
+            void path.offsetWidth;
+            // Restore animation class
+            path.style.animation = 'drawUnderline 1.2s ease-out forwards';
+        }
+    </script>
+</body>
+
+</html>
