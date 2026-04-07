@@ -29,7 +29,6 @@
 
   <main>
     <section class="hero" id="home">
-      <canvas id="heroCanvas" class="hero-canvas"></canvas>
       <div class="hero-content">
         <h1 class="hero-name" id="heroName1">Toto</h1>
         <p class="hero-description">Computer Engineering, Artificial Intelligence student at HKUST.</p>
@@ -37,16 +36,16 @@
       <div class="hero-ctas-right">
         <div class="cv-btn-wrap" data-magnetic>
           <button class="mag-btn mag-btn-solid" id="openCvBtn">
-            <span class="mag-btn-inner large">Open CV Variants</span>
+            <span class="mag-btn-inner large">Get CV</span>
           </button>
           <div class="cv-picker" id="cvPicker">
             <div class="cv-picker-label">Select Specialisation</div>
-            <button class="cv-picker-item" data-cv="aiml">Artificial Intelligence & ML</button>
-            <button class="cv-picker-item" data-cv="swe">Software Engineering</button>
-            <button class="cv-picker-item" data-cv="robotics">Robotics & Embedded</button>
-            <button class="cv-picker-item" data-cv="pm">Product Management</button>
-            <button class="cv-picker-item" data-cv="bd">Business Development</button>
-            <button class="cv-picker-item" data-cv="climbing">Climbing & Leadership</button>
+            <a href="cv/Lai_Man_To_CV_AI-ML-Engineer.pdf" target="_blank" class="cv-picker-item">Artificial Intelligence & ML</a>
+            <a href="cv/Lai_Man_To_CV_Software-Engineer.pdf" target="_blank" class="cv-picker-item">Software Engineering</a>
+            <a href="cv/Lai_Man_To_CV_Robotics-Embedded.pdf" target="_blank" class="cv-picker-item">Robotics & Embedded</a>
+            <a href="cv/Lai_Man_To_CV_Product-Manager.pdf" target="_blank" class="cv-picker-item">Product Management</a>
+            <a href="cv/Lai_Man_To_CV_Business-Development.pdf" target="_blank" class="cv-picker-item">Business Development</a>
+            <a href="cv/Lai_Man_To_CV_Frontend-Designer.pdf" target="_blank" class="cv-picker-item">Frontend Designer</a>
           </div>
         </div>
         <div class="mag-btn-wrap" data-magnetic>
@@ -269,23 +268,15 @@
     <div class="cv-layout">
       <div class="cv-intro reveal reveal-d2">
         <p>Pick the role that fits best. I've broken down my CV into different versions so you can see exactly how my projects and skills map to your team's needs.</p>
-        <p style="color:var(--ink-3);">Available in PDF, Word, Markdown, or Plain Text.</p>
+        <p style="color:var(--ink-3);">Available in PDF format.</p>
       </div>
       <div class="cv-variants reveal reveal-d3">
-        <button class="cv-variant-btn" onclick="selectCV('aiml',this)">Artificial Intelligence, ML Engineer <span
-            class="cv-variant-arrow">&#8599;</span></button>
-        <button class="cv-variant-btn" onclick="selectCV('swe',this)">Software Engineer <span
-            class="cv-variant-arrow">&#8599;</span></button>
-        <button class="cv-variant-btn" onclick="selectCV('pm',this)">Product Manager <span
-            class="cv-variant-arrow">&#8599;</span></button>
-        <button class="cv-variant-btn" onclick="selectCV('robotics',this)">Robotics, Embedded <span
-            class="cv-variant-arrow">&#8599;</span></button>
-        <button class="cv-variant-btn" onclick="selectCV('bd',this)">Business Development <span
-            class="cv-variant-arrow">&#8599;</span></button>
-        <button class="cv-variant-btn" onclick="selectCV('climbing',this)">Sport Climbing Coach <span
-            class="cv-variant-arrow">&#8599;</span></button>
-        <button class="cv-variant-btn" onclick="selectCV('frontend',this)">Frontend Designer <span
-            class="cv-variant-arrow">&#8599;</span></button>
+        <a href="cv/Lai_Man_To_CV_AI-ML-Engineer.pdf" target="_blank" class="cv-variant-btn">Artificial Intelligence, ML Engineer <span class="cv-variant-arrow">&#8599;</span></a>
+        <a href="cv/Lai_Man_To_CV_Software-Engineer.pdf" target="_blank" class="cv-variant-btn">Software Engineer <span class="cv-variant-arrow">&#8599;</span></a>
+        <a href="cv/Lai_Man_To_CV_Product-Manager.pdf" target="_blank" class="cv-variant-btn">Product Manager <span class="cv-variant-arrow">&#8599;</span></a>
+        <a href="cv/Lai_Man_To_CV_Robotics-Embedded.pdf" target="_blank" class="cv-variant-btn">Robotics, Embedded <span class="cv-variant-arrow">&#8599;</span></a>
+        <a href="cv/Lai_Man_To_CV_Business-Development.pdf" target="_blank" class="cv-variant-btn">Business Development <span class="cv-variant-arrow">&#8599;</span></a>
+        <a href="cv/Lai_Man_To_CV_Frontend-Designer.pdf" target="_blank" class="cv-variant-btn">Frontend Designer <span class="cv-variant-arrow">&#8599;</span></a>
       </div>
     </div>
   </section>
@@ -316,24 +307,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- CV MODAL -->
-  <div class="cv-modal-overlay" id="cvModal">
-    <div class="cv-modal">
-      <div class="cv-modal-header">
-        <div class="cv-modal-title" id="cvModalTitle">CV Preview</div>
-        <button class="cv-modal-close" id="closeCvBtn">Close</button>
-      </div>
-      <div class="cv-preview" id="cvPreview"></div>
-      <div class="cv-export-bar">
-        <button class="export-btn primary" onclick="dlPDF()">PDF</button>
-        <button class="export-btn" onclick="dlTxt()">TXT</button>
-        <button class="export-btn" onclick="dlMd()">Markdown</button>
-        <button class="export-btn" onclick="emailCV()">Email</button>
-        <button class="export-btn" id="copyBtn" onclick="copyLink()">Copy Link</button>
-      </div>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>

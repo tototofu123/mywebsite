@@ -309,6 +309,7 @@ nav.hidden {
   letter-spacing: .06em;
   color: var(--ink-2);
   text-align: left;
+  text-decoration: none;
   cursor: none;
   transition: background .15s, color .15s, padding-left .2s;
 }
@@ -739,6 +740,7 @@ section {
   font-size: 1.3rem;
   font-weight: 300;
   color: var(--ink-2);
+  text-decoration: none;
   cursor: none;
   text-align: left;
   transition: color .2s, padding-left .3s;
