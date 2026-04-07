@@ -33,7 +33,7 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      /* scroll-behavior: smooth; */
     }
 
     body {
@@ -1128,7 +1128,6 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#cv">CV</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="/?mode=ultimate" style="color:var(--terra)">⬡ Ultimate</a></li>
     </ul>
   </nav>
 
@@ -1466,12 +1465,12 @@
     window.addEventListener('resize', resizeCanvas);
     function charReveal(el, text, baseDelay) { el.innerHTML = ''; text.split('').forEach(function (c, i) { var s = document.createElement('span'); s.className = 'char'; s.textContent = c === ' ' ? '\u00a0' : c; s.style.animationDelay = (baseDelay + i * .045) + 's'; el.appendChild(s); }); }
     charReveal(document.getElementById('heroName1'), 'Toto', 0.3);
-    charReveal(document.getElementById('heroName2'), '.codes', 0.6);
+    // charReveal(document.getElementById('heroName2'), '.codes', 0.6);
     document.querySelectorAll('[data-magnetic]').forEach(function (btn) { var inner = btn.querySelector('.mag-btn-inner'); btn.addEventListener('mousemove', function (e) { var r = btn.getBoundingClientRect(); var x = e.clientX - r.left - r.width / 2; var y = e.clientY - r.top - r.height / 2; inner.style.transition = 'transform 0.1s ease'; inner.style.transform = 'translate(' + (x * .28) + 'px,' + (y * .28) + 'px)'; }); btn.addEventListener('mouseleave', function () { inner.style.transition = 'transform 0.5s cubic-bezier(0.23,1,0.32,1)'; inner.style.transform = 'translate(0,0)'; }); });
     var revealObs = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: .08 });
     document.querySelectorAll('.reveal').forEach(function (el) { revealObs.observe(el); });
     var panel = document.getElementById('pagePanel');
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener('click', function (e) { var href = a.getAttribute('href'); if (href === '#') return; var target = document.querySelector(href); if (!target) return; e.preventDefault(); panel.classList.add('turning'); setTimeout(function () { target.scrollIntoView({ behavior: 'auto' }); setTimeout(function () { panel.classList.remove('turning'); }, 500); }, 420); }); });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener('click', function (e) { var href = a.getAttribute('href'); if (href === '#') return; var target = document.querySelector(href); if (!target) return; e.preventDefault(); target.scrollIntoView({ behavior: 'auto' }); }); });
     var cvData = {
       aiml: { title: 'AI / ML Engineer', headline: 'AI & ML Engineer Intern Candidate', summary: 'Computer Engineering & AI student at HKUST with hands-on experience building production-level deep learning models and agentic AI pipelines. Comfortable from dataset curation to deployment.', projects: [{ n: 'AI-Generated Image Detector (CNN)', d: 'TensorFlow CNN, 94% validation accuracy, 5,000+ samples, dropout regularisation, confusion matrix evaluation.' }, { n: 'Strategic Game AI (Minimax + Alpha-Beta)', d: '10,000+ board states/sec, custom heuristics for Connect4 and card games.' }, { n: 'Student Support AI Agent (RAG)', d: 'Dify + RAG, 50+ vectorised pages, empathetic prompt engineering, privacy guards.' }, { n: 'Hot-Topic Automation', d: 'Local LLM via Ollama, sentiment analysis, 90% manual research reduction.' }], skills: 'Python, TensorFlow, RAG, Dify, n8n, Ollama, Prompt Engineering, MCP, AWS ML' },
       swe: { title: 'Software Engineer', headline: 'Software Engineer Intern Candidate', summary: 'Full-stack developer with experience across embedded C++, Python, and cloud-integrated applications. Strong algorithmic foundations built through competitive game AI development.', projects: [{ n: 'AI Link-Saver & Summarizer', d: 'Cross-platform, LLM API, cloud-sync database, 100+ daily links handled.' }, { n: 'C++ PvE Combat Engine', d: 'OOP, state-machine combat, 10+ difficulty levels, no external libraries, memory-optimised.' }, { n: 'Minimax Game AI', d: '10,000+ board states/sec, alpha-beta pruning.' }, { n: 'Precision Line-Follower', d: 'Embedded C++, PID-inspired firmware, 90% precision on sharp-turn tracks.' }], skills: 'Python, C++, HTML/CSS, Arduino, Git' },
