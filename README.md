@@ -6,10 +6,6 @@ Public repository maintained by @tototofu123.
 
 - GitHub Pages: https://tototofu123.github.io/mywebsite/
 
-## Security
-
-- Secret scanning workflow: ".github/workflows/security-secrets-scan.yml"
-- Gitleaks config: ".gitleaks.toml"
 
 ## Notes
 
