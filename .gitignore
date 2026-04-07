@@ -1,5 +1,8 @@
 node_modules
-.github/workflows/notify-repo-blog-hub.yml
+.github/workflows
+dist
+photos
+src
+svgs
 .opencode/
-
 .agent/
