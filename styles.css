@@ -195,10 +195,11 @@ nav.hidden {
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: 80vh;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr .8fr;
   padding: 0 6rem;
+  gap: 3rem;
   position: relative;
   overflow: hidden;
   background: var(--white);
@@ -209,7 +210,7 @@ nav.hidden {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
   position: relative;
   z-index: 1;
 }
@@ -228,34 +229,39 @@ nav.hidden {
   font-weight: 300;
   line-height: 1.6;
   color: var(--ink-2);
-  max-width: 40ch;
+  max-width: 50ch;
 }
 
 .hero-ctas-right {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: flex-end;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  align-items: center;
+  justify-content: flex-end;
   z-index: 1;
 }
 
 .mag-btn-inner.large {
-  padding: 1.2rem 3rem;
-  font-size: .85rem;
+  padding: 1rem 2.8rem;
+  font-size: .8rem;
 }
 
 @media (max-width: 900px) {
   .hero {
+    min-height: auto;
     grid-template-columns: 1fr;
-    padding: 8rem 2rem 4rem;
+    padding: 10rem 2rem 6rem;
     text-align: center;
+    gap: 2rem;
   }
   .hero-content {
     align-items: center;
+    text-align: center;
   }
   .hero-ctas-right {
-    align-items: center;
-    margin-top: 3rem;
+    justify-content: center;
+    margin-top: 1.5rem;
   }
   .hero-description {
     text-align: center;
