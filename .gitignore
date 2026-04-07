@@ -6,3 +6,5 @@ svgs
 .opencode/
 .agent/
 portfolio-build-flow.md
+CNAME
+*.config.js
