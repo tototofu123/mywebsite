@@ -10,3 +10,4 @@ CNAME
 *.config.js
 *.toml
 *.json
+public/
