@@ -1,7 +1,6 @@
 node_modules
 .github/workflows
 dist
-photos
 src
 svgs
 .opencode/
