@@ -8,3 +8,5 @@ svgs
 portfolio-build-flow.md
 CNAME
 *.config.js
+*.toml
+*.json
