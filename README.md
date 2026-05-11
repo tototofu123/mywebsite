@@ -1,12 +1,24 @@
-# mywebsite
+# Personal Portfolio 🌐🎨
 
-Public repository maintained by @tototofu123.
+My personal website and portfolio showcasing software engineering projects, AI experiments, and technical skills.
 
-## Website
+## 🚀 Features
+- **Project Showcase**: Detailed view of my top repositories and live demos.
+- **Interactive CV**: Digital version of my resume with quick links.
+- **Responsive Design**: Optimized for mobile and desktop viewing.
+- **Automated Checks**: Includes scripts for verifying asset integrity (e.g., PDF links).
 
-- GitHub Pages: https://tototofu123.github.io/mywebsite/
+## 🛠️ Tech Stack
+- **JavaScript (Vanilla)**
+- **HTML5 & CSS3**
+- **GitHub Pages** for hosting
 
+## 📂 Project Structure
+- `index.html`: Main landing page and portfolio structure.
+- `script.js`: Interactive elements and data loading.
+- `styles.css`: Custom responsive styling.
+- `cv/`: Contains digital resume assets.
+- `photos/`: Gallery of project screenshots and personal highlights.
 
-## Notes
-
-This repository is configured with GitHub Pages (HTTPS), baseline safety checks, and tracked ignore rules.
+## 📜 License
+MIT
