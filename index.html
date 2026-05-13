@@ -5,18 +5,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Toto — Portfolio</title>
+  <meta name="description" content="Portfolio of Toto, a Computer Engineering and AI student at HKUST specializing in Deep Learning, Robotics, and Automation." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Figtree:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
   <style>
-    :root { --cream: #F7F3ED; --white: #FDFCFA; --ink: #1A1714; --terra: #B8613E; --font-display: 'Cormorant', serif; --font-body: 'Figtree', sans-serif; }
-    body { background: var(--cream); color: var(--ink); font-family: var(--font-body); margin: 0; }
-    .hero { min-height: 80vh; display: grid; grid-template-columns: 1.2fr .8fr; padding: 0 6rem; align-items: center; background: var(--white); }
-    .hero-name { font-family: var(--font-display); font-size: clamp(4rem, 8vw, 8rem); line-height: .9; }
-    @media (max-width: 900px) { .hero { padding: 10rem 2rem 6rem; grid-template-columns: 1fr; } }
+    :root {
+      --cream: #F7F3ED; --white: #FDFCFA; --ink: #1A1714; --ink-2: #3D3830; --ink-3: #5C554D; --terra: #B8613E;
+      --font-display: 'Cormorant', serif; --font-body: 'Figtree', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--cream); color: var(--ink); font-family: var(--font-body); font-weight: 300; overflow-x: hidden; cursor: none; }
+    body::after {
+      content: ''; position: fixed; inset: -50%; width: 200%; height: 200%; opacity: 0.038; pointer-events: none; z-index: 9000;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+    .hero { min-height: 80vh; display: grid; grid-template-columns: 1.2fr .8fr; padding: 0 6rem; align-items: center; background: var(--white); position: relative; overflow: hidden; }
+    .hero-content { display: flex; flex-direction: column; gap: 1.2rem; z-index: 1; }
+    .hero-name { font-family: var(--font-display); font-size: clamp(4rem, 8vw, 8rem); line-height: .9; font-weight: 300; }
+    .hero-description { font-size: clamp(1rem, 1.5vw, 1.25rem); color: var(--ink-2); line-height: 1.6; max-width: 50ch; }
+    @media (max-width: 900px) { .hero { padding: 10rem 2rem 6rem; grid-template-columns: 1fr; min-height: auto; text-align: center; } .hero-content { align-items: center; } }
+    #cur-dot, #cur-ring { position: fixed; pointer-events: none; z-index: 9999; }
+    #cur-dot { width: 6px; height: 6px; background: var(--terra); border-radius: 50%; }
+    #cur-ring { width: 32px; height: 32px; border: 1px solid rgba(184, 97, 62, 0.45); border-radius: 50%; }
   </style>
 </head>
 
@@ -55,8 +70,7 @@
             <a href="cv/Lai_Man_To_CV_Robotics-Embedded.pdf" target="_blank" class="cv-picker-item">Robotics &
               Embedded</a>
             <a href="cv/Lai_Man_To_CV_Product-Manager.pdf" target="_blank" class="cv-picker-item">Product Management</a>
-            <a href="cv/Lai_Man_To_CV_Business-Development.pdf" target="_blank" class="cv-picker-item">Business
-              Development</a>
+
             <a href="cv/Lai_Man_To_CV_Frontend-Designer.pdf" target="_blank" class="cv-picker-item">Frontend
               Designer</a>
           </div>
@@ -73,14 +87,14 @@
     <div class="marquee-strip">
       <div class="marquee-track">
         <span class="marquee-item">Python</span><span class="marquee-item">TensorFlow</span><span
-          class="marquee-item">Arduino</span><span class="marquee-item">RAG Pipelines</span><span
+          class="marquee-item">PyTorch</span><span class="marquee-item">RAG Pipelines</span><span
           class="marquee-item">n8n
-          Automation</span><span class="marquee-item">C++</span><span class="marquee-item">Figma</span><span
+          Automation</span><span class="marquee-item">Game Logic</span><span class="marquee-item">Figma</span><span
           class="marquee-item">National Climber</span>
         <span class="marquee-item">Python</span><span class="marquee-item">TensorFlow</span><span
-          class="marquee-item">Arduino</span><span class="marquee-item">RAG Pipelines</span><span
+          class="marquee-item">PyTorch</span><span class="marquee-item">RAG Pipelines</span><span
           class="marquee-item">n8n
-          Automation</span><span class="marquee-item">C++</span><span class="marquee-item">Figma</span><span
+          Automation</span><span class="marquee-item">Game Logic</span><span class="marquee-item">Figma</span><span
           class="marquee-item">National Climber</span>
       </div>
     </div>
@@ -150,9 +164,9 @@
           </div>
           <div class="project-reveal">
             <div class="project-reveal-name">Combat Bot 1st Place</div>
-            <div class="project-reveal-desc">Led 4-person team. Arduino BLE, custom mobile controller, optimised
+            <div class="project-reveal-desc">Led 4-person team. Wireless BLE, custom mobile controller, optimised
               mechanical design. Fastest time across 20+ competing teams.</div>
-            <div class="project-reveal-tags"><span class="project-reveal-tag">Arduino</span><span
+            <div class="project-reveal-tags"><span class="project-reveal-tag">Robotics</span><span
                 class="project-reveal-tag">Team Collaboration</span><span class="project-reveal-tag">Problem
                 Solving</span></div>
           </div>
@@ -218,15 +232,15 @@
         <div class="project-card">
           <div class="project-thumb">
             <div class="project-thumb-inner">
-              <video src="photos/WhatsApp Video 2026-03-01 at 22.29.03.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <video data-src="photos/WhatsApp Video 2026-03-01 at 22.29.03.mp4" autoplay muted loop playsinline preload="none" poster="photos/pve_engine_poster.webp" aria-label="PvE Combat Engine Preview"></video>
             </div>
           </div>
           <div class="project-reveal">
-            <div class="project-reveal-name">C++ PvE Combat Engine</div>
+            <div class="project-reveal-name">PvE Combat Engine</div>
             <div class="project-reveal-desc">Terminal RPG from scratch. Modular OOP architecture, state-machine combat,
               10+ difficulty levels, zero external libraries.</div>
-            <div class="project-reveal-tags"><span class="project-reveal-tag">C++</span><span
-                class="project-reveal-tag">Arduino</span><span class="project-reveal-tag">Systems</span></div>
+            <div class="project-reveal-tags"><span class="project-reveal-tag">Systems</span><span
+                class="project-reveal-tag">OOP Logic</span><span class="project-reveal-tag">Game Design</span></div>
           </div>
           <div class="project-body">
             <div class="project-meta">Systems</div>
@@ -267,8 +281,7 @@
           <div>
             <div class="skill-group-title">Communication</div>
             <div class="skill-tags"><span class="skill-tag">Public Speaking</span><span class="skill-tag">Technical
-                Presentation</span><span class="skill-tag">Sponsorship</span><span class="skill-tag">Stakeholder
-                Management</span></div>
+                Presentation</span><span class="skill-tag">Project Coordination</span><span class="skill-tag">Team Leadership</span></div>
           </div>
         </div>
       </div>
@@ -293,8 +306,7 @@
               class="cv-variant-arrow">&#8599;</span></a>
           <a href="cv/Lai_Man_To_CV_Robotics-Embedded.pdf" target="_blank" class="cv-variant-btn">Robotics, Embedded
             <span class="cv-variant-arrow">&#8599;</span></a>
-          <a href="cv/Lai_Man_To_CV_Business-Development.pdf" target="_blank" class="cv-variant-btn">Business
-            Development <span class="cv-variant-arrow">&#8599;</span></a>
+
           <a href="cv/Lai_Man_To_CV_Frontend-Designer.pdf" target="_blank" class="cv-variant-btn">Frontend Designer
             <span class="cv-variant-arrow">&#8599;</span></a>
         </div>
@@ -328,7 +340,7 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
